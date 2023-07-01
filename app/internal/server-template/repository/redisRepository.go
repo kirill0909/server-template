@@ -11,6 +11,8 @@ import (
 	"server-template/internal/models/auth"
 	"server-template/internal/models/templates"
 
+	pb "server-template/pkg/proto"
+
 	"github.com/pkg/errors"
 	"github.com/redis/go-redis/v9"
 	"go.opentelemetry.io/otel"
@@ -77,4 +79,8 @@ func (r *ServerTeamplateRedisRepo) GetSession(ctx context.Context, accessToken s
 func (r *ServerTeamplateRedisRepo) HTTPPing(ctx context.Context) (result templates.Templates, err error) {
 	result.Pong = "Pong"
 	return
+}
+
+func (r *ServerTeamplateRedisRepo) GRPCPing(ctx context.Context) (res *pb.ServerTemplateResponse, err error) {
+	return &pb.ServerTemplateResponse{Mess: "Pong"}, nil
 }

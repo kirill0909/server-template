@@ -18,5 +18,5 @@ func NewServerTemplateHandlers(serverTemplateUC server_template.UseCase) pb.Serv
 }
 
 func (s *ServerTemplateHandlers) Ping(ctx context.Context, empty *emptypb.Empty) (res *pb.ServerTemplateResponse, err error) {
-	return
+	return s.serverTemplateUC.GRPCPing(ctx)
 }

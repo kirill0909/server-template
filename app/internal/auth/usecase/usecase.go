@@ -1,11 +1,11 @@
 package usecase
 
 import (
-	"auth-svc/config"
-	"auth-svc/internal/auth"
-	models "auth-svc/internal/models/auth"
-	"auth-svc/pkg/logger"
 	"context"
+	"server-template/config"
+	"server-template/internal/auth"
+	models "server-template/internal/models/auth"
+	"server-template/pkg/logger"
 )
 
 type AuthUC struct {

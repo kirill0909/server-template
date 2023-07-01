@@ -1,8 +1,8 @@
 package auth
 
 import (
-	customErrors "auth-svc/pkg/errors"
 	"log"
+	customErrors "server-template/pkg/errors"
 )
 
 type AuthHeaders struct {

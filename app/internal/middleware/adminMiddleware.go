@@ -1,11 +1,11 @@
 package middleware
 
 import (
-	"auth-svc/internal/auth"
-	models "auth-svc/internal/models/auth"
-	"auth-svc/pkg/utils"
 	"encoding/json"
 	"errors"
+	"server-template/internal/auth"
+	models "server-template/internal/models/auth"
+	"server-template/pkg/utils"
 	"strconv"
 	"time"
 

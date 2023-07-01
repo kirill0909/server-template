@@ -1,8 +1,8 @@
 package http
 
 import (
-	"auth-svc/internal/auth"
-	"auth-svc/internal/middleware"
+	"server-template/internal/auth"
+	"server-template/internal/middleware"
 
 	"github.com/gofiber/fiber/v2"
 )

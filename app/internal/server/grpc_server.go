@@ -1,12 +1,12 @@
 package server
 
 import (
-	"auth-svc/config"
-	"auth-svc/pkg/logger"
 	"net"
+	"server-template/config"
+	"server-template/pkg/logger"
 
-	pb "gitlab.axarea.ru/main/aiforypay/package/auth-svc-proto"
 	"google.golang.org/grpc"
+	pb "server-template/pkg/proto"
 )
 
 type Deps struct {

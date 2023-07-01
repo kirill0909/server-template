@@ -1,8 +1,8 @@
 package logger
 
 import (
-	"auth-svc/config"
 	"os"
+	"server-template/config"
 
 	"github.com/rs/zerolog"
 	tb "gopkg.in/tucnak/telebot.v2"

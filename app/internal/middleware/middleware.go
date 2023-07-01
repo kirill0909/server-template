@@ -1,9 +1,9 @@
 package middleware
 
 import (
-	"auth-svc/config"
-	"auth-svc/internal/auth"
-	"auth-svc/pkg/logger"
+	"server-template/config"
+	"server-template/internal/auth"
+	"server-template/pkg/logger"
 )
 
 type MDWManager struct {

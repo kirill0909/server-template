@@ -1,10 +1,10 @@
 package httperrors
 
 import (
-	"auth-svc/config"
-	"auth-svc/pkg/errors"
-	"auth-svc/pkg/logger"
 	"fmt"
+	"server-template/config"
+	"server-template/pkg/errors"
+	"server-template/pkg/logger"
 
 	"github.com/gofiber/fiber/v2"
 )

@@ -1,9 +1,10 @@
 package grpc
 
 import (
-	"auth-svc/internal/auth"
+	"server-template/internal/auth"
 
-	pb "gitlab.axarea.ru/main/aiforypay/package/auth-svc-proto"
+	// pb "gitlab.axarea.ru/main/aiforypay/package/auth-svc-proto"
+	pb "server-template/pkg/proto"
 )
 
 type AuthHandlers struct {

@@ -1,12 +1,12 @@
 package redis
 
 import (
-	"auth-svc/config"
 	"context"
 	"crypto/tls"
 	"crypto/x509"
 	"fmt"
 	"os"
+	"server-template/config"
 	"time"
 
 	"github.com/pkg/errors"

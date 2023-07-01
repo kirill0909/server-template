@@ -1,8 +1,8 @@
 package fhttp
 
 import (
-	"auth-svc/config"
 	"fmt"
+	"server-template/config"
 	"time"
 
 	"github.com/valyala/fasthttp"

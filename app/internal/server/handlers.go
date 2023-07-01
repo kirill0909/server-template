@@ -1,14 +1,14 @@
 package server
 
 import (
-	authHTTPhHandler "auth-svc/internal/auth/handler/delivery/http"
-	authRedisRepository "auth-svc/internal/auth/repository"
-	authUsecase "auth-svc/internal/auth/usecase"
-	"auth-svc/internal/middleware"
+	authHTTPhHandler "server-template/internal/auth/handler/delivery/http"
+	authRedisRepository "server-template/internal/auth/repository"
+	authUsecase "server-template/internal/auth/usecase"
+	"server-template/internal/middleware"
 
-	"auth-svc/pkg/utils"
 	"context"
 	"fmt"
+	"server-template/pkg/utils"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"

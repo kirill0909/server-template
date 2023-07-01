@@ -1,14 +1,14 @@
 package repository
 
 import (
-	"auth-svc/config"
-	"auth-svc/internal/auth"
-	"auth-svc/pkg/logger"
 	"context"
 	"encoding/json"
 	"fmt"
+	"server-template/config"
+	"server-template/internal/auth"
+	"server-template/pkg/logger"
 
-	models "auth-svc/internal/models/auth"
+	models "server-template/internal/models/auth"
 
 	"github.com/pkg/errors"
 	"github.com/redis/go-redis/v9"

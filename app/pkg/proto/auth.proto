@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+package auth_proto;
+
+service Auth {
+  rpc CheckUUIDValid(CheckUUIDValidRequest) returns (CheckUUIDValidResponse) {}
+}
+
+message CheckUUIDValidRequest {
+  string UUID = 1;
+}
+
+message CheckUUIDValidResponse {
+  int64 UserID = 1;
+}

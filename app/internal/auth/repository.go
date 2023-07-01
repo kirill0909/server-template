@@ -1,8 +1,8 @@
 package auth
 
 import (
-	models "auth-svc/internal/models/auth"
 	"context"
+	models "server-template/internal/models/auth"
 )
 
 type RedisRepo interface {

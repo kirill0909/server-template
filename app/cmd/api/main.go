@@ -1,19 +1,19 @@
 package main
 
 import (
-	"auth-svc/config"
-	"auth-svc/internal/server"
-	"auth-svc/pkg/logger"
 	"context"
 	"log"
+	"server-template/config"
+	"server-template/internal/server"
+	"server-template/pkg/logger"
 
-	authGRPC "auth-svc/internal/auth/handler/delivery/grpc"
-	"auth-svc/internal/auth/repository"
-	UC "auth-svc/internal/auth/usecase"
+	authGRPC "server-template/internal/auth/handler/delivery/grpc"
+	"server-template/internal/auth/repository"
+	UC "server-template/internal/auth/usecase"
 
-	"auth-svc/pkg/storage/redis"
 	"os"
 	"os/signal"
+	"server-template/pkg/storage/redis"
 	"syscall"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"

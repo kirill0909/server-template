@@ -1,11 +1,11 @@
 package server
 
 import (
-	"auth-svc/config"
-	"auth-svc/pkg/httperrors"
-	"auth-svc/pkg/logger"
 	"context"
 	"fmt"
+	"server-template/config"
+	"server-template/pkg/httperrors"
+	"server-template/pkg/logger"
 
 	"go.opentelemetry.io/otel"
 

@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"server-template/config"
-	"server-template/internal/auth"
+	server_template "server-template/internal/server-template"
 	"server-template/pkg/logger"
 
 	models "server-template/internal/models/auth"
@@ -22,25 +22,25 @@ const (
 	adminUUIDPrefix  = "WS_ADMIN_"
 )
 
-type AuthRedisRepo struct {
+type ServerTeamplateRedisRepo struct {
 	redisClient *redis.Client
 	log         logger.Logger
 	cfg         *config.Config
 }
 
-func NewAuthRedisRepo(redisClient *redis.Client, log logger.Logger, cfg *config.Config) auth.RedisRepo {
-	return &AuthRedisRepo{redisClient: redisClient, log: log, cfg: cfg}
+func NewServerTeamplateRedisRepo(redisClient *redis.Client, log logger.Logger, cfg *config.Config) server_template.RedisRepo {
+	return &ServerTeamplateRedisRepo{redisClient: redisClient, log: log, cfg: cfg}
 }
 
-func (r *AuthRedisRepo) GetSession(ctx context.Context, accessToken string, sessionType uint8) (models.Session, error) {
+func (r *ServerTeamplateRedisRepo) GetSession(ctx context.Context, accessToken string, sessionType uint8) (models.Session, error) {
 	ctx, span := otel.Tracer("").Start(ctx, "userRedisRepo.GetSession")
 	defer span.End()
 
 	var prefix string
 	switch sessionType {
-	case auth.AdminSessionTypeID:
+	case server_template.AdminSessionTypeID:
 		prefix = adminSessPrefix
-	case auth.BrokerSessionTypeID:
+	case server_template.BrokerSessionTypeID:
 		prefix = clientSessPrefix
 	default:
 		return models.Session{}, fmt.Errorf("unknown session type id: %d", sessionType)

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option go_package = ".";
+
+package server_template_proto;
+
+service ServerTemplate {
+  rpc Ping(google.protobuf.Empty) returns (ServerTemplateResponse) {}
+}
+
+message ServerTemplateResponse {
+  string mess = 1;
+}

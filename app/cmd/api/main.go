@@ -7,9 +7,9 @@ import (
 	"server-template/internal/server"
 	"server-template/pkg/logger"
 
-	authGRPC "server-template/internal/auth/handler/delivery/grpc"
-	"server-template/internal/auth/repository"
-	UC "server-template/internal/auth/usecase"
+	serverTemplateGRPC "server-template/internal/server-template/handler/delivery/grpc"
+	"server-template/internal/server-template/repository"
+	UC "server-template/internal/server-template/usecase"
 
 	"os"
 	"os/signal"
@@ -104,16 +104,12 @@ func main() {
 		}
 	}(redisClient)
 
-	redisRepo := repository.NewAuthRedisRepo(redisClient, appLogger, cfg)
-	usecase := UC.NewAuthUC(
-		redisRepo,
-		appLogger,
-		cfg,
-	)
-	authGRPCHandler := authGRPC.NewAuthHandlers(usecase)
+	redisRepo := repository.NewServerTeamplateRedisRepo(redisClient, appLogger, cfg)
+	usecase := UC.NewServerTemplateUC(redisRepo, appLogger, cfg)
+	serverTemplateGRPCHandler := serverTemplateGRPC.NewServerTemplateHandlers(usecase)
 
 	deps := server.Deps{
-		AuthHandlers: authGRPCHandler,
+		ServerTemplateHandlers: serverTemplateGRPCHandler,
 	}
 
 	srv := grpc.NewServer(

@@ -3,8 +3,8 @@ package middleware
 import (
 	"encoding/json"
 	"errors"
-	"server-template/internal/auth"
 	models "server-template/internal/models/auth"
+	"server-template/internal/server-template"
 	"server-template/pkg/utils"
 	"strconv"
 	"time"
@@ -30,7 +30,7 @@ func (mw *MDWManager) BrokerAuthedMiddleware() fiber.Handler {
 			return err
 		}
 
-		session, err := mw.authUC.GetSession(ctx, authHeaders.Authorization, auth.BrokerSessionTypeID)
+		session, err := mw.serverTemplateUC.GetSession(ctx, authHeaders.Authorization, server_template.BrokerSessionTypeID)
 		if err != nil {
 			if errors.Is(err, redis.Nil) {
 				mw.log.Info("MDWManager.BrokerAuthedMiddleware. Unable to find session session")

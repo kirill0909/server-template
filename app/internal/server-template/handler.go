@@ -1,4 +1,4 @@
-package auth
+package server_template
 
 type Handlers interface {
 }

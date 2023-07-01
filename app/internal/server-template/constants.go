@@ -1,4 +1,4 @@
-package auth
+package server_template
 
 const (
 	AdminSessionTypeID  = 0

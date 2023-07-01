@@ -1,10 +1,10 @@
 package server
 
 import (
-	authHTTPhHandler "server-template/internal/auth/handler/delivery/http"
-	authRedisRepository "server-template/internal/auth/repository"
-	authUsecase "server-template/internal/auth/usecase"
 	"server-template/internal/middleware"
+	serverTemplateHTTPhHandler "server-template/internal/server-template/handler/delivery/http"
+	serverTemplateRedisRepository "server-template/internal/server-template/repository"
+	serverTemplateUsecase "server-template/internal/server-template/usecase"
 
 	"context"
 	"fmt"
@@ -43,22 +43,22 @@ func (s *Server) MapHandlers(ctx context.Context, app *fiber.App) error {
 	}))
 
 	// repos
-	authRepo := authRedisRepository.NewAuthRedisRepo(s.redisClient, s.log, s.cfg)
+	authRepo := serverTemplateRedisRepository.NewServerTeamplateRedisRepo(s.redisClient, s.log, s.cfg)
 
 	// usecases
-	authUC := authUsecase.NewAuthUC(authRepo, s.log, s.cfg)
+	authUC := serverTemplateUsecase.NewServerTemplateUC(authRepo, s.log, s.cfg)
 
 	// handlers
-	authHandler := authHTTPhHandler.NewAuthHandlers(s.cfg, authUC, s.log)
+	authHandler := serverTemplateHTTPhHandler.NewserverTeamplateHandlers(s.cfg, authUC, s.log)
 
 	// route groups
 	apiGroup := app.Group("api")
-	authGroup := apiGroup.Group("auth")
+	serverTemplates := apiGroup.Group("server_templates")
 
 	mw := middleware.NewMDWManager(s.cfg, s.log, authUC)
 
 	// TODO: maybe add some middlewares later
-	authHTTPhHandler.MapAuthRoutes(authGroup, authHandler, mw)
+	serverTemplateHTTPhHandler.MapServerTemplateRoutes(serverTemplates, authHandler, mw)
 
 	return nil
 }

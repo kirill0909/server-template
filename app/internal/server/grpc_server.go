@@ -10,7 +10,7 @@ import (
 )
 
 type Deps struct {
-	AuthHandlers pb.AuthServer
+	ServerTemplateHandlers pb.ServerTemplateServer
 }
 
 type GRPCServer struct {
@@ -30,7 +30,7 @@ func NewGRPCServer(srv *grpc.Server, deps Deps, cfg *config.Config, logg logger.
 }
 
 func (g *GRPCServer) Run() error {
-	pb.RegisterAuthServer(g.srv, g.deps.AuthHandlers)
+	pb.RegisterServerTemplateServer(g.srv, g.deps.ServerTemplateHandlers)
 
 	l, err := net.Listen("tcp", g.cfg.Server.Host+":"+g.cfg.Server.GRPCPort)
 	if err != nil {

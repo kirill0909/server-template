@@ -8,4 +8,5 @@ import (
 )
 
 func MapServerTemplateRoutes(serverTemplateRoutes fiber.Router, h server_template.Handlers, mw *middleware.MDWManager) {
+	serverTemplateRoutes.Get("/ping", mw.BrokerAuthedMiddleware(), h.Ping())
 }

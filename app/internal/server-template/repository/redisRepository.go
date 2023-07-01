@@ -8,7 +8,8 @@ import (
 	server_template "server-template/internal/server-template"
 	"server-template/pkg/logger"
 
-	models "server-template/internal/models/auth"
+	"server-template/internal/models/auth"
+	"server-template/internal/models/templates"
 
 	"github.com/pkg/errors"
 	"github.com/redis/go-redis/v9"
@@ -32,7 +33,7 @@ func NewServerTeamplateRedisRepo(redisClient *redis.Client, log logger.Logger, c
 	return &ServerTeamplateRedisRepo{redisClient: redisClient, log: log, cfg: cfg}
 }
 
-func (r *ServerTeamplateRedisRepo) GetSession(ctx context.Context, accessToken string, sessionType uint8) (models.Session, error) {
+func (r *ServerTeamplateRedisRepo) GetSession(ctx context.Context, accessToken string, sessionType uint8) (auth.Session, error) {
 	ctx, span := otel.Tracer("").Start(ctx, "userRedisRepo.GetSession")
 	defer span.End()
 
@@ -43,14 +44,14 @@ func (r *ServerTeamplateRedisRepo) GetSession(ctx context.Context, accessToken s
 	case server_template.BrokerSessionTypeID:
 		prefix = clientSessPrefix
 	default:
-		return models.Session{}, fmt.Errorf("unknown session type id: %d", sessionType)
+		return auth.Session{}, fmt.Errorf("unknown session type id: %d", sessionType)
 	}
 
 	var key string
 	if iter := r.redisClient.Scan(ctx, 0, prefix+"*_"+accessToken, 1).Iterator(); iter.Next(ctx) {
 		key = iter.Val()
 	} else {
-		return models.Session{}, redis.Nil
+		return auth.Session{}, redis.Nil
 	}
 
 	sessionString, err := r.redisClient.Get(
@@ -58,17 +59,22 @@ func (r *ServerTeamplateRedisRepo) GetSession(ctx context.Context, accessToken s
 		key,
 	).Result()
 	if err != nil {
-		return models.Session{}, errors.Wrapf(
+		return auth.Session{}, errors.Wrapf(
 			err,
 			"user.repository.GetSession.Get(%s)",
 			prefix+accessToken,
 		)
 	}
 
-	var session models.Session
+	var session auth.Session
 	err = json.Unmarshal([]byte(sessionString), &session)
 	if err != nil {
-		return models.Session{}, errors.Wrap(err, "user.repository.GetSession.Unmarshal()")
+		return auth.Session{}, errors.Wrap(err, "user.repository.GetSession.Unmarshal()")
 	}
 	return session, nil
+}
+
+func (r *ServerTeamplateRedisRepo) Ping(ctx context.Context) (result templates.Templates, err error) {
+	result.Pong = "Pong"
+	return
 }

@@ -2,9 +2,11 @@ package server_template
 
 import (
 	"context"
-	models "server-template/internal/models/auth"
+	"server-template/internal/models/auth"
+	"server-template/internal/models/templates"
 )
 
 type UseCase interface {
-	GetSession(ctx context.Context, accessToken string, sessionType uint8) (models.Session, error)
+	GetSession(ctx context.Context, accessToken string, sessionType uint8) (auth.Session, error)
+	Ping(ctx context.Context) (result templates.Templates, err error)
 }

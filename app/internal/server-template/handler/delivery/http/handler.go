@@ -32,7 +32,7 @@ func (h *serverTeamplateHandlers) Ping() fiber.Handler {
 
 		h.log.Infof("UserID: %d", userID)
 
-		result, err := h.serverTemplateUC.Ping(c.Context())
+		result, err := h.serverTemplateUC.HTTPPing(c.Context())
 		if err != nil {
 			h.log.Error(err)
 			return err

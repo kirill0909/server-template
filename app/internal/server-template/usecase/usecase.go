@@ -23,6 +23,6 @@ func (u *ServerTemplateUC) GetSession(ctx context.Context, accessToken string, s
 	return u.serverTemplateRedisRepo.GetSession(ctx, accessToken, sessionType)
 }
 
-func (u *ServerTemplateUC) Ping(ctx context.Context) (result templates.Templates, err error) {
-	return u.serverTemplateRedisRepo.Ping(ctx)
+func (u *ServerTemplateUC) HTTPPing(ctx context.Context) (result templates.Templates, err error) {
+	return u.serverTemplateRedisRepo.HTTPPing(ctx)
 }

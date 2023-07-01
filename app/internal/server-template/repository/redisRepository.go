@@ -74,7 +74,7 @@ func (r *ServerTeamplateRedisRepo) GetSession(ctx context.Context, accessToken s
 	return session, nil
 }
 
-func (r *ServerTeamplateRedisRepo) Ping(ctx context.Context) (result templates.Templates, err error) {
+func (r *ServerTeamplateRedisRepo) HTTPPing(ctx context.Context) (result templates.Templates, err error) {
 	result.Pong = "Pong"
 	return
 }

@@ -8,5 +8,5 @@ import (
 
 type RedisRepo interface {
 	GetSession(ctx context.Context, accessToken string, sessionType uint8) (auth.Session, error)
-	Ping(ctx context.Context) (result templates.Templates, err error)
+	HTTPPing(ctx context.Context) (result templates.Templates, err error)
 }

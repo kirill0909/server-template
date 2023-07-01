@@ -1,1 +1,1 @@
-# server-template
+# best server-templat
